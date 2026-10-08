@@ -30,31 +30,31 @@
         <div class="panel-head"><div><h2>Your cohort numbers</h2><p>Change any input to shape the estimate.</p></div><span class="step">01 / YOUR INPUTS</span></div>
         <div class="form">
           <div class="grid2">
-            <div class="field"><label for="batch">Members in this batch</label><input id="batch" type="number" min="1" max="100000" step="1" value="150" inputmode="numeric"></div>
-            <div class="field"><label for="price">Ticket price</label><div class="input-wrap"><span class="prefix">₹</span><input class="with-prefix" id="price" type="number" min="1" max="100000000" step="500" value="12000" inputmode="decimal"></div></div>
+            <div class="field"><label for="batch">Members in this batch</label><input id="batch" type="number" min="1" max="100000" step="1" value="150" inputmode="numeric" autocomplete="off"></div>
+            <div class="field"><label for="price">Ticket price</label><div class="input-wrap"><span class="prefix">₹</span><input class="with-prefix" id="price" type="number" min="1" max="100000000" step="500" value="12000" inputmode="decimal" autocomplete="off"></div></div>
           </div>
           <div class="grid2">
             <div class="field"><label for="platform">Platform</label><select id="platform"><option value="topmate">Topmate</option><option value="graphy">Graphy</option><option value="exly">Exly</option><option value="other">Other</option></select></div>
             <div class="field"><label for="plan">Plan / checkout</label><select id="plan"></select></div>
           </div>
           <div class="grid2">
-            <div class="field"><label for="batches">Batches per year</label><input id="batches" type="number" min="1" max="52" step="1" value="4" inputmode="numeric"></div>
-            <div class="field" id="other-fee-field" hidden><label for="other-fee">Other platform fee <small>assumption</small></label><div class="input-wrap"><input id="other-fee" type="number" min="0" max="100" step="0.1" value="0" inputmode="decimal"><span class="prefix" style="left:auto;right:12px">%</span></div></div>
+            <div class="field"><label for="batches">Batches per year</label><input id="batches" type="number" min="1" max="52" step="1" value="4" inputmode="numeric" autocomplete="off"></div>
+            <div class="field" id="other-fee-field" hidden><label for="other-fee">Other platform fee <small>assumption</small></label><div class="input-wrap"><input id="other-fee" type="number" min="0" max="100" step="0.1" value="0" inputmode="decimal" autocomplete="off"><span class="prefix" style="left:auto;right:12px">%</span></div></div>
           </div>
-          <div class="field" id="other-cost-field" hidden><label for="other-cost">Other plan cost per year <small>assumption</small></label><div class="input-wrap"><span class="prefix">₹</span><input class="with-prefix" id="other-cost" type="number" min="0" max="100000000" step="1000" value="0" inputmode="numeric"></div></div>
+          <div class="field" id="other-cost-field" hidden><label for="other-cost">Other plan cost per year <small>assumption</small></label><div class="input-wrap"><span class="prefix">₹</span><input class="with-prefix" id="other-cost" type="number" min="0" max="100000000" step="1000" value="0" inputmode="numeric" autocomplete="off"></div></div>
           <div class="field">
             <div class="field-title"><label for="silence">Members who go silent in week one</label><span class="helper">Edit this scenario</span></div>
-            <div class="range-row"><input id="silence" type="range" min="0" max="100" step="1" value="40"><output class="range-value" id="silence-out">40%</output></div>
+            <div class="range-row"><input id="silence" type="range" min="0" max="100" step="1" value="40" autocomplete="off"><output class="range-value" id="silence-out">40%</output></div>
           </div>
           <div class="assumptions">
             <span class="assumption-tag">Editable planning assumptions</span>
             <div class="field">
               <div class="field-title"><label for="return-rate">Quiet member buys the next batch</label><span class="helper">per person</span></div>
-              <div class="range-row"><input id="return-rate" type="range" min="0" max="100" step="1" value="25"><output class="range-value" id="return-out">25%</output></div>
+              <div class="range-row"><input id="return-rate" type="range" min="0" max="100" step="1" value="25" autocomplete="off"><output class="range-value" id="return-out">25%</output></div>
             </div>
             <div class="field">
               <div class="field-title"><label for="referrals">Paid referrals per member, per batch</label><span class="helper">expected seats</span></div>
-              <input id="referrals" type="number" min="0" max="10" step="0.05" value="0.10" inputmode="decimal">
+              <input id="referrals" type="number" min="0" max="10" step="0.05" value="0.10" inputmode="decimal" autocomplete="off">
               <div class="helper" style="margin-top:6px">0.10 means 1 paid referral for every 10 members. Set your own estimate.</div>
             </div>
           </div>
