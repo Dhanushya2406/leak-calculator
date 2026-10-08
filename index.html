@@ -92,7 +92,7 @@
       Platform terms checked 8 October 2026: <a href="https://topmate.io/pricing" target="_blank" rel="noreferrer">Topmate</a> · <a href="https://graphyapp.in/pricing/" target="_blank" rel="noreferrer">Graphy</a> · <a href="https://exlyapp.com/exlypricing" target="_blank" rel="noreferrer">Exly</a>.
     </footer>
   </main>
-  <div class="toast" id="toast" role="status">Contact link is ready to connect. Add your WhatsApp, email, or booking URL.</div>
+  <div class="toast" id="toast" role="status">This contact button is awaiting the creator’s preferred link. Ask the person who shared the page how to connect.</div>
   <script>
     const plans = {
       topmate: [
@@ -116,10 +116,12 @@
     const inr = new Intl.NumberFormat("en-IN", {style:"currency",currency:"INR",maximumFractionDigits:0});
     const num = new Intl.NumberFormat("en-IN", {maximumFractionDigits:2});
     function money(value, compact=false) {
-      const n = Math.max(0, Number.isFinite(value) ? value : 0);
-      if (!compact || n < 100000) return inr.format(Math.round(n));
-      if (n >= 10000000) return "₹" + (n / 10000000).toLocaleString("en-IN", {maximumFractionDigits:2}) + " crore";
-      return "₹" + (n / 100000).toLocaleString("en-IN", {maximumFractionDigits:2}) + " lakh";
+      const raw = Number.isFinite(value) ? value : 0;
+      const sign = raw < 0 ? "−" : "";
+      const n = Math.abs(raw);
+      if (!compact || n < 100000) return sign + inr.format(Math.round(n));
+      if (n >= 10000000) return sign + "₹" + (n / 10000000).toLocaleString("en-IN", {maximumFractionDigits:2}) + " crore";
+      return sign + "₹" + (n / 100000).toLocaleString("en-IN", {maximumFractionDigits:2}) + " lakh";
     }
     function number(id, fallback=0) { const v = Number($(id).value); return Number.isFinite(v) ? v : fallback; }
     function renderPlans() {
@@ -139,9 +141,9 @@
       const fixed=key === "other" ? Math.max(0,number("other-cost")) : p.annual;
       const unitFee=Math.max(price*rate,p.floor||0);
       const feePerExpectedSale=nextSeats*unitFee+referralSeats*unitFee;
-      const net=Math.max(0,gross-feePerExpectedSale);
+      const net=gross-feePerExpectedSale;
       const annualGross=10*(returns+referrals)*price*batches;
-      const annualNet=Math.max(0,annualGross-(10*(returns+referrals)*unitFee*batches));
+      const annualNet=annualGross-(10*(returns+referrals)*unitFee*batches);
       $("silence-out").value=number("silence")+"%";
       $("return-out").value=number("return-rate")+"%";
       $("silent-count").textContent=num.format(silent);
@@ -167,7 +169,8 @@
       $("platform-source").textContent=source[key];
     }
     platform.addEventListener("change",renderPlans);
-    ["plan","batch","price","batches","silence","return-rate","referrals","other-fee","other-cost"].forEach(id=>$(id).addEventListener("input",calculate));
+    ["batch","price","batches","silence","return-rate","referrals","other-fee","other-cost"].forEach(id=>$(id).addEventListener("input",calculate));
+    $("plan").addEventListener("change",calculate);
     $("contact-button").addEventListener("click",()=>{const toast=$("toast");toast.classList.add("show");setTimeout(()=>toast.classList.remove("show"),3600)});
     renderPlans();
   </script>
