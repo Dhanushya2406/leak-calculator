@@ -101,8 +101,8 @@
       ],
       graphy: [
         {name:"Launch", rate:0.10, annual:24999, floor:10, label:"10% (₹10 minimum per sale)"},
-        {name:"Grow", rate:0.075, annual:49999, floor:10, label:"7.5% (₹10 minimum per sale)"},
-        {name:"Rise", rate:0.05, annual:99999, floor:10, label:"5% (₹10 minimum per sale)"}
+        {name:"Grow", rate:0.075, annual:49999, floor:0, label:"7.5% transaction fee"},
+        {name:"Rise", rate:0.05, annual:99999, floor:0, label:"5% transaction fee"}
       ],
       exly: [
         {name:"Starter", rate:0.10, annual:0, floor:0, label:"10% transaction commission"},
@@ -162,7 +162,7 @@
       $("fee-caption").textContent=key === "other" ? "Other · "+num.format(rate*100)+"% editable fee" : (key === "topmate" ? "Topmate · " : key === "graphy" ? "Graphy "+planName+" · " : "Exly "+planName+" · ")+p.label;
       const source = {
         topmate:"Topmate public pricing shows 10% through your link and 20% via marketplace. Account-specific terms may differ.",
-        graphy:"Graphy public annual plans: Launch ₹24,999, Grow ₹49,999, Rise ₹99,999. Each listed tier shows a ₹10 minimum transaction fee.",
+        graphy:"Graphy public annual plans: Launch ₹24,999, Grow ₹49,999, Rise ₹99,999. Launch lists a ₹10 minimum per sale; Grow and Rise are modeled at their listed percentage fees.",
         exly:"Exly public plans: Starter ₹0/year, Pro ₹30,000/year, Premium ₹1,08,000/year, with the selected transaction commission.",
         other:"Other-platform commission and annual plan cost are editable assumptions. Enter the terms for your account."
       };
