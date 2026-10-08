@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f4ee">
+  <meta name="description" content="Estimate the revenue opportunity in keeping cohort members active.">
+  <title>Cohort Leak Calculator · First 50 Active</title>
+  <style>
+    :root{--ink:#18352b;--muted:#66776d;--paper:#f5f4ee;--card:#fffefa;--line:#e2e5db;--green:#126c4c;--green-dark:#0b5239;--mint:#e3f2e8;--lime:#d7ed8a;--coral:#ef9b78;--shadow:0 16px 44px rgba(24,53,43,.08);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);font-synthesis:none;text-rendering:optimizeLegibility}
+    *{box-sizing:border-box}body{margin:0;background:var(--paper);min-width:320px}.wrap{max-width:1120px;margin:0 auto;padding:24px 20px 64px}.topbar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:50px}.brand{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:750;letter-spacing:-.02em}.mark{width:32px;height:32px;border-radius:11px;background:var(--green);color:#fff;display:grid;place-items:center;font-size:16px}.topnote{font-size:12px;color:var(--muted);border:1px solid var(--line);background:#ffffff8a;border-radius:999px;padding:8px 12px}.hero{display:grid;grid-template-columns:1.1fr .9fr;align-items:end;gap:28px;margin-bottom:30px}.eyebrow{color:var(--green);font-size:11px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;margin-bottom:14px}.hero h1{font-size:clamp(38px,6vw,68px);line-height:.98;letter-spacing:-.065em;margin:0;max-width:670px}.hero h1 em{font-style:normal;color:var(--green)}.hero-copy{font-size:15px;line-height:1.65;color:var(--muted);max-width:390px;margin:0 0 5px}.layout{display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);gap:18px;align-items:start}.panel{background:var(--card);border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow);overflow:hidden}.panel-head{padding:23px 24px 17px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:start;gap:12px}.panel-head h2{font-size:17px;letter-spacing:-.03em;margin:0 0 5px}.panel-head p{font-size:12px;color:var(--muted);margin:0;line-height:1.5}.step{font-size:10px;font-weight:800;color:var(--green);letter-spacing:.12em;background:var(--mint);padding:7px 9px;border-radius:8px;white-space:nowrap}.form{padding:21px 24px 24px}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:13px}.field{margin-bottom:18px}.field label,.field-title{display:flex;justify-content:space-between;gap:8px;align-items:center;font-size:12px;font-weight:700;margin-bottom:8px}.field label small,.helper{font-weight:450;color:var(--muted);font-size:11px}.input-wrap{position:relative}.prefix{position:absolute;top:50%;left:12px;transform:translateY(-50%);font-size:13px;color:var(--muted)}input[type=number],select{width:100%;height:44px;background:#fff;border:1px solid #d8ded4;border-radius:11px;padding:0 12px;color:var(--ink);font:inherit;font-size:14px;outline:none}input.with-prefix{padding-left:31px}input:focus,select:focus{border-color:var(--green);box-shadow:0 0 0 3px #126c4c18}.range-row{display:grid;grid-template-columns:1fr 62px;gap:10px;align-items:center}.range-row input[type=range]{width:100%;accent-color:var(--green)}.range-value{height:36px;border-radius:9px;border:1px solid var(--line);display:grid;place-items:center;font-size:12px;font-weight:750;background:#fff}.assumptions{margin-top:4px;padding:14px 14px 0;background:#f7f8f2;border:1px solid var(--line);border-radius:14px}.assumption-tag{display:inline-flex;font-size:9px;font-weight:850;letter-spacing:.1em;text-transform:uppercase;color:#77512c;background:#f6e9d6;border-radius:5px;padding:5px 7px;margin-bottom:12px}.assumptions .field{margin-bottom:14px}.assumptions .field-title{margin-bottom:6px}.result-top{padding:24px;background:var(--green);color:#fff;position:relative;overflow:hidden}.result-top:after{content:"";position:absolute;width:220px;height:220px;right:-65px;top:-135px;background:#ffffff12;border-radius:50%}.result-kicker{font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#c9e4d5;margin-bottom:11px}.result-top h2{font-size:24px;letter-spacing:-.045em;margin:0 0 19px}.hero-result{display:flex;align-items:end;justify-content:space-between;gap:15px}.big-number{font-size:clamp(36px,5vw,54px);letter-spacing:-.06em;line-height:1;font-weight:800}.big-label{font-size:12px;color:#d1e6d9;margin-top:8px}.people-pill{background:#ffffff1b;border:1px solid #ffffff2c;padding:10px 12px;border-radius:12px;font-size:11px;line-height:1.4;text-align:right;color:#e5f2e9;z-index:1}.people-pill strong{display:block;font-size:15px;color:#fff}.result-body{padding:20px 22px 23px}.section-label{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:800;margin-bottom:12px}.risk-lines{display:grid;gap:9px}.risk-line{display:flex;justify-content:space-between;gap:14px;align-items:center;padding:12px 13px;border:1px solid var(--line);border-radius:12px;background:#fff}.risk-title{font-size:12px;font-weight:720}.risk-formula{font-size:10px;color:var(--muted);margin-top:4px;line-height:1.4}.risk-amount{text-align:right;font-size:14px;font-weight:800;white-space:nowrap}.risk-amount small{display:block;color:var(--muted);font-size:9px;font-weight:550;margin-top:3px}.net-box{display:flex;justify-content:space-between;gap:12px;align-items:center;background:var(--mint);border-radius:13px;padding:15px;margin-top:12px}.net-box strong{font-size:18px;letter-spacing:-.03em}.net-box span{font-size:11px;line-height:1.45;color:#456153}.net-box .net-number{text-align:right;color:var(--ink);white-space:nowrap}.annual{margin-top:18px;padding:17px;border-radius:16px;border:1px solid #dfe7bd;background:#f5f8e7}.annual-head{display:flex;justify-content:space-between;gap:10px;align-items:start}.annual h3{font-size:13px;margin:0 0 6px;letter-spacing:-.02em}.annual p{font-size:10px;color:var(--muted);line-height:1.45;margin:0;max-width:360px}.annual-value{font-size:22px;font-weight:850;letter-spacing:-.04em;white-space:nowrap;text-align:right}.annual-value small{display:block;font-size:9px;font-weight:600;color:var(--muted);letter-spacing:0;margin-top:3px}.formula{font-size:10px;color:#506049;border-top:1px solid #dfe7bd;padding-top:10px;margin-top:12px;line-height:1.5}.plan-note{font-size:10px;color:var(--muted);display:flex;justify-content:space-between;gap:8px;margin-top:13px;padding-top:11px;border-top:1px solid var(--line)}.source-note{font-size:10px;color:var(--muted);line-height:1.55;margin:13px 2px 0}.source-note strong{color:var(--ink)}.cta{display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center;background:#18352b;color:#fff;border-radius:22px;padding:25px 26px;margin-top:18px}.cta .eyebrow{color:#b6dbbf;margin:0 0 8px}.cta h2{font-size:21px;letter-spacing:-.04em;margin:0}.cta p{font-size:11px;color:#c9d9d0;margin:7px 0 0;line-height:1.5}.cta-button{border:0;border-radius:12px;padding:14px 17px;background:var(--lime);color:#203426;font-size:12px;font-weight:800;cursor:pointer;white-space:nowrap}.cta-button:hover{background:#e5f4b2}.contact-help{font-size:9px!important;color:#b7c9be!important;margin-top:7px!important;text-align:center}.fineprint{font-size:10px;line-height:1.55;color:var(--muted);padding:20px 3px 0}.fineprint a{color:var(--green);text-decoration:underline;text-underline-offset:2px}.toast{position:fixed;left:50%;bottom:20px;transform:translate(-50%,20px);opacity:0;pointer-events:none;transition:.2s;background:#18352b;color:#fff;border-radius:12px;padding:13px 16px;font-size:12px;box-shadow:var(--shadow);max-width:calc(100% - 32px);text-align:center}.toast.show{transform:translate(-50%,0);opacity:1}
+    @media(max-width:760px){.wrap{padding:17px 14px 40px}.topbar{margin-bottom:35px}.hero{grid-template-columns:1fr;gap:13px;margin-bottom:22px}.hero-copy{font-size:13px}.layout{grid-template-columns:1fr;gap:13px}.panel-head{padding:19px 18px 15px}.form{padding:18px}.result-top{padding:21px}.result-body{padding:17px}.cta{grid-template-columns:1fr;padding:21px;gap:16px}.cta-button{width:100%}.contact-help{text-align:left}.topnote{font-size:10px;padding:7px 9px}.annual-value{font-size:20px}}
+    @media(max-width:380px){.grid2{grid-template-columns:1fr;gap:0}.hero h1{font-size:40px}.people-pill{font-size:10px;padding:8px}.risk-line{padding:11px 10px}.risk-amount{font-size:12px}}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <header class="topbar">
+      <div class="brand"><span class="mark">↗</span> First 50 Active</div>
+      <div class="topnote">A quick cohort value check · India</div>
+    </header>
+
+    <section class="hero">
+      <div><div class="eyebrow">Member activation, in rupees</div><h1>What could a <em>quiet cohort</em> cost?</h1></div>
+      <p class="hero-copy">Put in your next batch numbers. See one editable scenario for the revenue that may be missed when members go quiet after signup.</p>
+    </section>
+
+    <section class="layout" aria-label="Cohort value calculator">
+      <article class="panel">
+        <div class="panel-head"><div><h2>Your cohort numbers</h2><p>Change any input to shape the estimate.</p></div><span class="step">01 / YOUR INPUTS</span></div>
+        <div class="form">
+          <div class="grid2">
+            <div class="field"><label for="batch">Members in this batch</label><input id="batch" type="number" min="1" max="100000" step="1" value="150" inputmode="numeric"></div>
+            <div class="field"><label for="price">Ticket price</label><div class="input-wrap"><span class="prefix">₹</span><input class="with-prefix" id="price" type="number" min="1" max="100000000" step="500" value="12000" inputmode="decimal"></div></div>
+          </div>
+          <div class="grid2">
+            <div class="field"><label for="platform">Platform</label><select id="platform"><option value="topmate">Topmate</option><option value="graphy">Graphy</option><option value="exly">Exly</option><option value="other">Other</option></select></div>
+            <div class="field"><label for="plan">Plan / checkout</label><select id="plan"></select></div>
+          </div>
+          <div class="grid2">
+            <div class="field"><label for="batches">Batches per year</label><input id="batches" type="number" min="1" max="52" step="1" value="4" inputmode="numeric"></div>
+            <div class="field" id="other-fee-field" hidden><label for="other-fee">Other platform fee <small>assumption</small></label><div class="input-wrap"><input id="other-fee" type="number" min="0" max="100" step="0.1" value="0" inputmode="decimal"><span class="prefix" style="left:auto;right:12px">%</span></div></div>
+          </div>
+          <div class="field" id="other-cost-field" hidden><label for="other-cost">Other plan cost per year <small>assumption</small></label><div class="input-wrap"><span class="prefix">₹</span><input class="with-prefix" id="other-cost" type="number" min="0" max="100000000" step="1000" value="0" inputmode="numeric"></div></div>
+          <div class="field">
+            <div class="field-title"><label for="silence">Members who go silent in week one</label><span class="helper">Edit this scenario</span></div>
+            <div class="range-row"><input id="silence" type="range" min="0" max="100" step="1" value="40"><output class="range-value" id="silence-out">40%</output></div>
+          </div>
+          <div class="assumptions">
+            <span class="assumption-tag">Editable planning assumptions</span>
+            <div class="field">
+              <div class="field-title"><label for="return-rate">Quiet member buys the next batch</label><span class="helper">per person</span></div>
+              <div class="range-row"><input id="return-rate" type="range" min="0" max="100" step="1" value="25"><output class="range-value" id="return-out">25%</output></div>
+            </div>
+            <div class="field">
+              <div class="field-title"><label for="referrals">Paid referrals per member, per batch</label><span class="helper">expected seats</span></div>
+              <input id="referrals" type="number" min="0" max="10" step="0.05" value="0.10" inputmode="decimal">
+              <div class="helper" style="margin-top:6px">0.10 means 1 paid referral for every 10 members. Set your own estimate.</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="panel" aria-live="polite">
+        <div class="result-top">
+          <div class="result-kicker">02 / YOUR SCENARIO</div>
+          <h2>A quiet week can hide future value.</h2>
+          <div class="hero-result"><div><div class="big-number" id="silent-count">60</div><div class="big-label">members likely to go quiet</div></div><div class="people-pill">based on your inputs<strong id="batch-size-label">150 members</strong></div></div>
+        </div>
+        <div class="result-body">
+          <div class="section-label">Possible next-batch value at risk</div>
+          <div class="risk-lines">
+            <div class="risk-line"><div><div class="risk-title">Next-batch tickets</div><div class="risk-formula" id="next-formula">60 × 25% × ₹12,000</div></div><div class="risk-amount"><span id="next-value">₹1.8 lakh</span><small id="next-seats">15 expected seats</small></div></div>
+            <div class="risk-line"><div><div class="risk-title">Referral tickets</div><div class="risk-formula" id="ref-formula">60 × 0.10 × ₹12,000</div></div><div class="risk-amount"><span id="ref-value">₹72,000</span><small id="ref-seats">6 expected seats</small></div></div>
+          </div>
+          <div class="net-box"><div><strong>Net after transaction fees</strong><br><span id="fee-caption">Topmate · 10% own-link fee</span></div><div class="net-number"><strong id="net-value">₹2,26,800</strong><span style="display:block;font-size:9px;color:#456153;margin-top:4px">on the at-risk ticket value</span></div></div>
+          <div class="annual"><div class="annual-head"><div><h3>Keeping 10 more members active</h3><p>Across each of your batches this year, using the same editable continuation and referral assumptions.</p></div><div class="annual-value" id="annual-value">₹1,51,200<small>net value over a year</small></div></div><div class="formula" id="annual-formula">10 × (25% + 0.10) × ₹12,000 × 4 batches, after transaction fees</div></div>
+          <div class="plan-note"><span>Listed platform plan cost</span><strong id="annual-plan">₹0 / year</strong></div>
+          <p class="source-note" id="platform-source">Topmate fees shown are 10% through your link or 20% via marketplace. Account-specific terms may differ.</p>
+        </div>
+      </article>
+    </section>
+
+    <section class="cta">
+      <div><div class="eyebrow">A 14-day activation sprint</div><h2>First 50 Active gets your first 50 members active in 14 days.</h2><p>See what a focused activation sprint could look like for your next cohort.</p></div>
+      <div><button class="cta-button" id="contact-button" type="button">Talk about your next batch&nbsp; ↗</button><p class="contact-help">Contact link placeholder · connect WhatsApp, email or Calendly</p></div>
+    </section>
+
+    <footer class="fineprint">
+      <strong>How to read this:</strong> This is an editable scenario, not a forecast. Silent members are rounded to whole people; the ticket estimates are expected values and can be fractional. The 25% next-batch rate and 0.10 referral seats per member per batch are planning assumptions, not published benchmarks. Net removes estimated transaction commission; the listed annual plan cost is shown separately because it is due either way. GST, payment gateway charges, discounts and taxes are not included.<br><br>
+      Your study of 127 communities found that 42% send no communication after signup. That measures community communication behavior, not member silence; the separate 40% member-silence slider is editable.<br><br>
+      Platform terms checked 8 October 2026: <a href="https://topmate.io/pricing" target="_blank" rel="noreferrer">Topmate</a> · <a href="https://graphyapp.in/pricing/" target="_blank" rel="noreferrer">Graphy</a> · <a href="https://exlyapp.com/exlypricing" target="_blank" rel="noreferrer">Exly</a>.
+    </footer>
+  </main>
+  <div class="toast" id="toast" role="status">Contact link is ready to connect. Add your WhatsApp, email, or booking URL.</div>
+  <script>
+    const plans = {
+      topmate: [
+        {name:"Own link", rate:0.10, annual:0, floor:0, label:"10% own-link fee"},
+        {name:"Marketplace", rate:0.20, annual:0, floor:0, label:"20% marketplace fee"}
+      ],
+      graphy: [
+        {name:"Launch", rate:0.10, annual:24999, floor:10, label:"10% (₹10 minimum per sale)"},
+        {name:"Grow", rate:0.075, annual:49999, floor:10, label:"7.5% (₹10 minimum per sale)"},
+        {name:"Rise", rate:0.05, annual:99999, floor:10, label:"5% (₹10 minimum per sale)"}
+      ],
+      exly: [
+        {name:"Starter", rate:0.10, annual:0, floor:0, label:"10% transaction commission"},
+        {name:"Pro", rate:0.06, annual:30000, floor:0, label:"6% transaction commission"},
+        {name:"Premium", rate:0.03, annual:108000, floor:0, label:"3% transaction commission"}
+      ],
+      other: [{name:"Your estimate", rate:0, annual:0, floor:0, label:"Your editable estimate"}]
+    };
+    const $ = id => document.getElementById(id);
+    const platform = $("platform"), planSelect = $("plan");
+    const inr = new Intl.NumberFormat("en-IN", {style:"currency",currency:"INR",maximumFractionDigits:0});
+    const num = new Intl.NumberFormat("en-IN", {maximumFractionDigits:2});
+    function money(value, compact=false) {
+      const n = Math.max(0, Number.isFinite(value) ? value : 0);
+      if (!compact || n < 100000) return inr.format(Math.round(n));
+      if (n >= 10000000) return "₹" + (n / 10000000).toLocaleString("en-IN", {maximumFractionDigits:2}) + " crore";
+      return "₹" + (n / 100000).toLocaleString("en-IN", {maximumFractionDigits:2}) + " lakh";
+    }
+    function number(id, fallback=0) { const v = Number($(id).value); return Number.isFinite(v) ? v : fallback; }
+    function renderPlans() {
+      const key = platform.value;
+      planSelect.replaceChildren(...plans[key].map((p,i) => { const o=document.createElement("option"); o.value=String(i); o.textContent=p.name; return o; }));
+      $("other-fee-field").hidden = key !== "other";
+      $("other-cost-field").hidden = key !== "other";
+      calculate();
+    }
+    function calculate() {
+      const key=platform.value, p=plans[key][Number(planSelect.value)||0];
+      const batch=Math.max(0,number("batch")), price=Math.max(0,number("price")), batches=Math.max(0,number("batches"));
+      const silence=number("silence")/100, returns=number("return-rate")/100, referrals=Math.max(0,number("referrals"));
+      const silent=Math.round(batch*silence), nextSeats=silent*returns, referralSeats=silent*referrals;
+      const nextGross=nextSeats*price, refGross=referralSeats*price, gross=nextGross+refGross;
+      const rate=key === "other" ? Math.max(0,number("other-fee"))/100 : p.rate;
+      const fixed=key === "other" ? Math.max(0,number("other-cost")) : p.annual;
+      const unitFee=Math.max(price*rate,p.floor||0);
+      const feePerExpectedSale=nextSeats*unitFee+referralSeats*unitFee;
+      const net=Math.max(0,gross-feePerExpectedSale);
+      const annualGross=10*(returns+referrals)*price*batches;
+      const annualNet=Math.max(0,annualGross-(10*(returns+referrals)*unitFee*batches));
+      $("silence-out").value=number("silence")+"%";
+      $("return-out").value=number("return-rate")+"%";
+      $("silent-count").textContent=num.format(silent);
+      $("batch-size-label").textContent=num.format(batch)+" members";
+      $("next-formula").textContent=num.format(silent)+" × "+num.format(returns*100)+"% × "+money(price);
+      $("next-value").textContent=money(nextGross,true);
+      $("next-seats").textContent=num.format(nextSeats)+" expected seats";
+      $("ref-formula").textContent=num.format(silent)+" × "+num.format(referrals)+" × "+money(price);
+      $("ref-value").textContent=money(refGross,true);
+      $("ref-seats").textContent=num.format(referralSeats)+" expected seats";
+      $("net-value").textContent=money(net,true);
+      $("annual-value").innerHTML=money(annualNet,true)+"<small>net value over a year</small>";
+      $("annual-formula").textContent="10 × ("+num.format(returns*100)+"% + "+num.format(referrals)+") × "+money(price)+" × "+num.format(batches)+" batches, after transaction fees";
+      $("annual-plan").textContent=money(fixed)+" / year";
+      const planName=p.name;
+      $("fee-caption").textContent=key === "other" ? "Other · "+num.format(rate*100)+"% editable fee" : (key === "topmate" ? "Topmate · " : key === "graphy" ? "Graphy "+planName+" · " : "Exly "+planName+" · ")+p.label;
+      const source = {
+        topmate:"Topmate public pricing shows 10% through your link and 20% via marketplace. Account-specific terms may differ.",
+        graphy:"Graphy public annual plans: Launch ₹24,999, Grow ₹49,999, Rise ₹99,999. Each listed tier shows a ₹10 minimum transaction fee.",
+        exly:"Exly public plans: Starter ₹0/year, Pro ₹30,000/year, Premium ₹1,08,000/year, with the selected transaction commission.",
+        other:"Other-platform commission and annual plan cost are editable assumptions. Enter the terms for your account."
+      };
+      $("platform-source").textContent=source[key];
+    }
+    platform.addEventListener("change",renderPlans);
+    ["plan","batch","price","batches","silence","return-rate","referrals","other-fee","other-cost"].forEach(id=>$(id).addEventListener("input",calculate));
+    $("contact-button").addEventListener("click",()=>{const toast=$("toast");toast.classList.add("show");setTimeout(()=>toast.classList.remove("show"),3600)});
+    renderPlans();
+  </script>
+</body>
+</html>
